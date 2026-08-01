@@ -1,0 +1,19 @@
+VYREN AI - HUONG DAN CAI TREN MAY KHAC
+======================================
+
+1. Chay Vyren-AI-Setup-0.1.1.exe va hoan tat cai dat.
+2. Mo Vyren AI > Cai dat > Mo thu muc Extension.
+3. Trong Chrome, mo chrome://extensions.
+4. Bat Che do danh cho nha phat trien.
+5. Chon Tai tien ich da giai nen va chon thu muc vyren-ai-extension.
+6. Extension phai hien ten Vyren AI Worker, phien ban 2.55.0.
+7. Cai FFmpeg neu trang Cai dat cua app bao Chua cai.
+   Co the dung Windows Package Manager:
+   winget install --id Gyan.FFmpeg -e
+8. Khoi dong lai Vyren AI, sau do mo ChatGPT va Google Flow trong Chrome.
+
+Bo phan phoi cung co Vyren-AI-Worker-Extension-2.55.0.zip de sao chep extension rieng.
+Phai giai nen file ZIP truoc khi chon Tai tien ich da giai nen.
+
+Vyren AI - Vyren AI
+Kwang Chun aka Quang Trung

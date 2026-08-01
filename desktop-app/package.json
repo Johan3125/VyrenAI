@@ -1,0 +1,108 @@
+{
+  "name": "vyren-ai-desktop",
+  "productName": "Vyren AI",
+  "version": "0.1.1",
+  "private": true,
+  "description": "Vyren AI - continuity-controlled AI video workflow automation",
+  "author": {
+    "name": "Vyren AI"
+  },
+  "copyright": "Copyright © 2026 Vyren AI",
+  "main": "./out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "npm run typecheck && electron-vite build",
+    "dist:win": "npm run build && electron-builder --win nsis --x64",
+    "dist:bundle": "npm run dist:win && powershell -NoProfile -ExecutionPolicy Bypass -File scripts/create-distribution.ps1",
+    "preview": "electron-vite preview",
+    "smoke:characters": "node scripts/phase2-character-smoke.mjs",
+    "smoke:reconnect": "node scripts/phase1-reconnect-smoke.mjs",
+    "smoke:timeline": "node scripts/phase3-timeline-smoke.mjs",
+    "smoke:scenes": "node scripts/phase3-timeline-smoke.mjs",
+    "smoke:phase5": "node scripts/phase3-timeline-smoke.mjs",
+    "smoke:workers": "node scripts/phase1-smoke.mjs",
+    "test": "tsx --test src/shared/character.test.ts src/shared/timeline.test.ts src/shared/prompt-file.test.ts src/shared/script-timing.test.ts src/shared/continuity.test.ts src/shared/scene-job.test.ts src/main/character-store.test.ts src/main/project-database.test.ts src/main/production-queue.test.ts src/main/visual-style-store.test.ts src/main/timeline-session-store.test.ts src/main/storage-manager.test.ts src/main/media-relocation.test.ts src/main/edit-service.test.ts src/main/capcut-service.test.ts src/main/video-assembly-service.test.ts src/main/legacy-session-recovery.test.ts src/main/worker-server.test.ts src/main/content-chat-batching.test.ts src/main/content-flow-settings.test.ts src/main/video-pacing.test.ts src/main/voice-service.test.ts src/renderer/home/homepage-model.test.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json"
+  },
+  "dependencies": {
+    "edge-tts-universal": "^1.4.0",
+    "lowdb": "7.0.1",
+    "lucide-react": "1.24.0",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "ws": "8.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@types/ws": "8.18.1",
+    "@vitejs/plugin-react": "5.2.0",
+    "electron": "43.1.0",
+    "electron-builder": "^26.15.3",
+    "electron-vite": "5.0.0",
+    "tsx": "4.23.1",
+    "typescript": "7.0.2",
+    "vite": "7.3.6"
+  },
+  "build": {
+    "appId": "ai.vyren.desktop",
+    "productName": "Vyren AI",
+    "executableName": "Vyren AI",
+    "asar": true,
+    "compression": "maximum",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "out/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "build/icon.png",
+        "to": "icon.png"
+      },
+      {
+        "from": "../extension-worker",
+        "to": "vyren-ai-extension",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "Vyren-AI-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "Vyren AI",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "installerHeaderIcon": "build/icon.ico",
+      "deleteAppDataOnUninstall": false,
+      "runAfterFinish": true
+    }
+  },
+  "allowScripts": {
+    "electron@43.1.0": true,
+    "esbuild@0.25.12": true,
+    "esbuild@0.28.1": true,
+    "electron-winstaller@5.4.0": true
+  }
+}

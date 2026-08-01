@@ -1,0 +1,83 @@
+.edit-assembly-modal { width: min(760px, calc(100vw - 32px)); max-height: min(88vh, 820px); overflow: auto; }
+.edit-assembly-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+.edit-assembly-grid > section, .edit-assembly-options, .edit-assembly-validation, .edit-assembly-progress { border: 1px solid #1d2b3b; border-radius: 7px; padding: 12px; background: #0a131e; }
+.edit-assembly-modal h3 { margin: 0 0 10px; color: #8fa7c0; font-size: 10px; letter-spacing: .1em; }
+.edit-assembly-modal .edit-slider-row { display: grid; gap: 5px; margin: 9px 0; }
+.edit-assembly-modal .edit-slider-row input[type="range"] { width: 100%; accent-color: #2878ff; }
+.edit-assembly-modal .edit-number-row, .edit-assembly-modal .edit-toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 7px 0; }
+.edit-assembly-modal .edit-number-row input, .edit-assembly-modal select { min-width: 84px; border: 1px solid #263d55; border-radius: 4px; padding: 5px 7px; color: #e6f0fb; background: #080f18; }
+.edit-assembly-options { margin-top: 10px; }
+.edit-assembly-scene-list { max-height: 150px; overflow: auto; margin-top: 10px; border: 1px solid #1d2b3b; background: #080f18; }
+.edit-assembly-scene-list h3 { padding: 10px 12px 6px; margin: 0; }
+.edit-assembly-scene-list > div { display: grid; grid-template-columns: 80px 1fr auto; gap: 8px; align-items: center; padding: 6px 10px; border-top: 1px solid #172536; color: #d9e7f5; font-size: 10px; }
+.edit-assembly-scene-list small { color: #7890a8; }
+.edit-assembly-scene-list b { color: #64748b; font-size: 9px; }
+.edit-assembly-scene-list b.is-ready { color: #4ade80; }
+.edit-assembly-scene-list b.is-error { color: #f87171; }
+.edit-assembly-options > div { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.edit-assembly-options label { display: grid; gap: 5px; color: #8da2b7; font-size: 10px; }
+.edit-assembly-validation { margin-top: 10px; }
+.edit-assembly-validation-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.edit-assembly-validation-head button { border: 1px solid #2c4b6e; border-radius: 4px; padding: 5px 8px; color: #b5d7ff; background: #10243a; cursor: pointer; font-size: 10px; }
+.edit-assembly-progress { margin-top: 10px; }
+.edit-assembly-progress > div { display: flex; justify-content: space-between; color: #cfe3f8; font-size: 11px; }
+.edit-assembly-progress progress { width: 100%; height: 7px; margin: 9px 0 4px; accent-color: #2878ff; }
+.edit-assembly-progress small { color: #71869b; font-size: 10px; }
+@media (max-width: 760px) { .edit-assembly-grid, .edit-assembly-options > div { grid-template-columns: 1fr 1fr; } }
+
+/* Keep the editor's preview and timeline in separate, bounded grid tracks.
+   The original editor stylesheet used large minimum row sizes; on a 1366x768
+   window those minimums were larger than the available workspace and the
+   timeline painted over the preview. */
+.kc-edit-page {
+  position: relative;
+  box-sizing: border-box;
+  align-content: start;
+  min-height: 0 !important;
+  height: 100% !important;
+  overflow: hidden;
+  grid-template-rows: 76px auto minmax(0, 1fr) minmax(220px, 42vh) !important;
+  padding-bottom: 28px !important;
+}
+.kc-main-workspace > .kc-edit-page {
+  min-height: 0 !important;
+  height: 100% !important;
+  padding: 0 !important;
+}
+.kc-edit-page > * { min-height: 0; box-sizing: border-box; }
+.edit-readiness-placeholder { display: block; height: 0 !important; min-height: 0 !important; padding: 0 !important; border: 0 !important; overflow: hidden; }
+.kc-edit-page > .edit-header { height: 76px; min-height: 76px !important; max-height: 76px; overflow: hidden; }
+.edit-upper-workspace,
+.edit-preview-column,
+.edit-preview-panel,
+.edit-preview-canvas,
+.edit-scene-info,
+.edit-inspector,
+.edit-timeline-panel,
+.edit-timeline-shell,
+.edit-timeline-scroll { min-height: 0 !important; }
+.edit-upper-workspace { overflow: hidden; }
+.edit-preview-column { min-height: 0; overflow: hidden; grid-template-rows: minmax(0, 1fr) 42px; }
+.edit-preview-panel { height: 100%; min-height: 0 !important; overflow: hidden; }
+.edit-preview-canvas { height: 100%; min-height: 0 !important; }
+.edit-playback-controls { height: 42px; min-height: 42px; overflow: hidden; }
+.edit-timeline-panel { overflow: hidden; }
+.edit-timeline-scroll { overflow: auto; }
+.kc-main-workspace > .kc-edit-page > .edit-status-bar {
+  position: absolute !important;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  min-height: 28px !important;
+  height: 28px !important;
+  max-height: 28px !important;
+  padding: 0 12px !important;
+  overflow: hidden;
+  z-index: 10;
+}
+
+@media (max-width: 1200px) {
+  .kc-edit-page {
+    grid-template-rows: 76px auto minmax(180px, 1fr) minmax(200px, 38vh) !important;
+  }
+}

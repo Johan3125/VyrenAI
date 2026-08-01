@@ -1,0 +1,61 @@
+{
+  "manifest_version": 3,
+  "name": "Vyren AI Worker",
+  "version": "2.64.0",
+  "minimum_chrome_version": "120",
+  "description": "Vyren AI browser worker for ChatGPT, Claude, Gemini, Grok, and Google Flow automation.",
+  "permissions": ["alarms", "downloads", "storage", "tabs", "scripting", "debugger"],
+  "host_permissions": [
+    "http://127.0.0.1/*",
+    "https://chatgpt.com/*",
+    "https://claude.ai/*",
+    "https://gemini.google.com/*",
+    "https://grok.com/*",
+    "https://www.capcut.com/*",
+    "https://capcut.com/*",
+    "https://*.grok.com/*",
+    "https://*.x.ai/*",
+    "https://*.twimg.com/*",
+    "https://*.googleusercontent.com/*",
+    "https://*.gstatic.com/*",
+    "https://*.openai.com/*",
+    "https://*.oaiusercontent.com/*",
+    "https://oaidalleapiprodscus.blob.core.windows.net/*",
+    "https://labs.google/*",
+    "https://flow.google/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Vyren AI Worker",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/*"],
+      "js": ["content-chat.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://claude.ai/*", "https://gemini.google.com/*", "https://grok.com/*", "https://www.capcut.com/*", "https://capcut.com/*"],
+      "js": ["content-chat.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://labs.google/fx/*", "https://flow.google/*"],
+      "js": ["content-flow.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
